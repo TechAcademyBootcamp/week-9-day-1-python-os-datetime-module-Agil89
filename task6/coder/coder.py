@@ -25,15 +25,16 @@ class Coder():
             os.chdir(files_dir)
         else:
             os.chdir(self.package_name)
+        return os.getcwd()
 
     def print_working_directory(self):
-        print(os.getcwd())
+        return os.getcwd()
 
     def create_file(self,file_name):
-        file_path = self.change_directory()
-        print(file_path)
-        # create_file(self, file_name) - change directory etdiyimiz yerde file_name adli file yaratmalidir
-        pass
+        file_path = os.getcwd()
+        mkd_file = os.path.join(file_path, file_name)
+        open(mkd_file,'w').close()
+
     def write_code(self, file_name, code):
         with open(file_name,'w') as f:
             f.write(code)
@@ -44,5 +45,6 @@ class Coder():
 
 codder = Coder('code2')
 codder.create_package('package')
-codder.change_directory('package')
-codder.create_file()
+print(codder.change_directory('package'))
+codder.create_file('main.py')
+codder.write_code('main.py','print("hello world")')
